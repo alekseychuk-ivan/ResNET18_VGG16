@@ -159,13 +159,17 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=20, name=Fa
 # choice net and create models
 if net_name.lower() == 'ResNET'.lower():
     model_h = handle_create('ResNET', num_classes=2)
-    model_f = initialize_model('ResNET', num_classes=num_classes, feature_extract=feature_extract, use_pretrained=True)
-    model_aug = initialize_model('ResNET', num_classes=num_classes, feature_extract=feature_extract, use_pretrained=True)
+    model_f = initialize_model('ResNET', num_classes=num_classes, feature_extract=feature_extract,
+                               use_pretrained=use_pretrained)
+    model_aug = initialize_model('ResNET', num_classes=num_classes, feature_extract=feature_extract,
+                                 use_pretrained=use_pretrained)
     name_lst = ['ResNET18', 'ResNET18_FT', 'ResNET18_AUG']
 elif net_name.lower() == 'VGG'.lower():
     model_h = handle_create('VGG', num_classes=2)
-    model_f = initialize_model('VGG', num_classes=num_classes, feature_extract=feature_extract, use_pretrained=True)
-    model_aug = initialize_model('VGG', num_classes=num_classes, feature_extract=feature_extract, use_pretrained=True)
+    model_f = initialize_model('VGG', num_classes=num_classes, feature_extract=feature_extract,
+                               use_pretrained=use_pretrained)
+    model_aug = initialize_model('VGG', num_classes=num_classes, feature_extract=feature_extract,
+                                 use_pretrained=use_pretrained)
     name_lst = ['VGG16', 'VGG16_FT', 'VGG16_AUG']
 else:
     print('Such a model does not exist')

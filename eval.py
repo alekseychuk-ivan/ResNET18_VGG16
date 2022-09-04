@@ -69,7 +69,7 @@ def eval_model(model, dataloaders, name=False):
 flag = True
 lst_dir = os.listdir(saveto)  # list file in checkpoint path
 # check validation folder
-if not os.path.exists(datapath + '/val'):
+if not os.path.exists(datapath):
     print('The val or train folder does not exist at the specified path.')
     flag = False
     print('Script close')
@@ -83,9 +83,9 @@ if net_name.lower() == 'ResNET'.lower():
     if set(lst_pth).issubset(set(lst_dir)):
         model_h = handle_create('ResNET', num_classes=num_classes)
         model_f = initialize_model('ResNET', num_classes=num_classes, feature_extract=feature_extract,
-                                   use_pretrained=True)
+                                   use_pretrained=use_pretrained)
         model_aug = initialize_model('ResNET', num_classes=num_classes, feature_extract=feature_extract,
-                                     use_pretrained=True)
+                                     use_pretrained=use_pretrained)
     else:
         print('Please check the files {}'.format(lst_pth))
         flag = False
@@ -96,9 +96,10 @@ elif net_name.lower() == 'VGG'.lower():
     lst_pth = ['VGG16.pth', 'VGG16_FT.pth', 'VGG16_AUG.pth']
     if set(lst_pth).issubset(set(lst_dir)):
         model_h = handle_create('VGG', num_classes=num_classes)
-        model_f = initialize_model('VGG', num_classes=num_classes, feature_extract=feature_extract, use_pretrained=True)
+        model_f = initialize_model('VGG', num_classes=num_classes, feature_extract=feature_extract,
+                                   use_pretrained=use_pretrained)
         model_aug = initialize_model('VGG', num_classes=num_classes, feature_extract=feature_extract,
-                                     use_pretrained=True)
+                                     use_pretrained=use_pretrained)
     else:
         print('Please check the files {}'.format(lst_pth))
         flag = False
